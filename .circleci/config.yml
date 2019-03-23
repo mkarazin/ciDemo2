@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/node:8.9.4 # the primary container, where your job's commands are run
+    steps:
+      # Check out the code from Github
+      - checkout
+
+      # Build the project
+      - run:
+          name: Build project
+          command: npm run build
