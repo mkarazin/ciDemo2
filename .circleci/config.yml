@@ -28,9 +28,9 @@ jobs:
           name: Install deps
           command: npm install
 
-      # Checks if project can build successfully
+      # Checks if unit tests are passing
       - run:
-          name: Build project
+          name: Run Unit Tests
           command: npm run test:unit
 
 
@@ -40,3 +40,5 @@ workflows:
     jobs:
       - build
       - unit-tests
+          requires:
+            - build
