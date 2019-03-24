@@ -16,3 +16,19 @@ jobs:
       - run:
           name: Build project
           command: npm run build
+  unit-test:
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/node:8.9.4 # the primary container, where your job's commands are run
+    steps:
+      # Check out the code from Github
+      - checkout
+
+      # Install dependencies
+      - run:
+          name: Install deps
+          command: npm install
+
+      # Checks if project can build successfully
+      - run:
+          name: Build project
+          command: npm run test:unit
