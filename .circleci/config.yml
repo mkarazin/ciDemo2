@@ -12,6 +12,12 @@ jobs:
           name: Install deps
           command: npm install
 
+      # Save to cache the node_modules
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-node-modules-cache-{{ checksum "package.json" }}
+
       # Checks if project can build successfully
       - run:
           name: Build project
@@ -23,10 +29,8 @@ jobs:
       # Check out the code from Github
       - checkout
 
-      # Install dependencies
-      - run:
-          name: Install deps
-          command: npm install
+      - restore_cache:
+          key: v1-node-modules-cache-{{ checksum "package.json" }}
 
       # Checks if unit tests are passing
       - run:
