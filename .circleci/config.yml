@@ -7,12 +7,12 @@ jobs:
       # Check out the code from Github
       - checkout
 
-      # Install Dependencies
+      # Install dependencies
       - run:
-          name: Install Dependencies
+          name: Install deps
           command: npm install
 
-      # Build the project
+      # Checks if project can build successfully
       - run:
           name: Build project
           command: npm run build
